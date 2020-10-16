@@ -14,3 +14,7 @@ def show_header(mode, word, response):
 
 def show_translations(translations):
     print("Translations", translations, sep="\n")
+
+
+def show_examples(examples):
+    print(examples)

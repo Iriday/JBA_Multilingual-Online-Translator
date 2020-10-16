@@ -4,3 +4,4 @@ def run(view, model):
 
     view.show_header(mode, word, response)
     view.show_translations(model.get_translations(response.content))
+    view.show_examples(model.get_examples(response.content))
