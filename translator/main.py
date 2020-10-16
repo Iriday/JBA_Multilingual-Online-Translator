@@ -1,3 +1,3 @@
-from translator.controller import run
+from translator import controller, view, model
 
-run()
+controller.run(view, model)
