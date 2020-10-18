@@ -4,4 +4,4 @@ def run(view, model):
     translations = model.get_translations(response.content)
     examples = model.get_examples(response.content)
 
-    view.show_results(translations, examples, mode, text, response)
+    view.show_results(translations, examples, mode)

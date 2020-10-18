@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 
 def get_page(languages, text) -> rq.Response:
-    return rq.get(f"https://context.reverso.net/translation/{'-'.join(languages)}/{text}",
+    return rq.get(f"https://context.reverso.net/translation/{f'{languages[0].lower()}-{languages[1].lower()}'}/{text}",
                   headers={"user-agent": "Anonymous/999 Give me the content! please)"})
 
 

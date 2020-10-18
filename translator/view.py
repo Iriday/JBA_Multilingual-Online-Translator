@@ -1,16 +1,22 @@
+__languages = {1: "Arabic", 2: "German", 3: "English", 4: "Spanish", 5: "French", 6: "Hebrew", 7: "Japanese",
+               8: "Dutch", 9: "Polish", 10: "Portuguese", 11: "Romanian", 12: "Russian", 13: "Turkish"}
+
+
 def get_mode():
-    mode = input('Type "en" if you want to translate from French into English,'
-                 ' or "fr" if you want to translate from English into French: ').strip()
-    return ("english", "french") if mode == "fr" else ("french", "english")  # temp
+    show_header()
+    from_lan = __languages[int(input("Type the number of your language:\n"))]
+    to_lan = __languages[int(input("Type the number of language you want to translate to:\n"))]
+    return from_lan, to_lan
 
 
 def get_text():
-    return input("Type the word/text you want to translate: ").strip()
+    return input("Type the word/text you want to translate:\n").strip()
 
 
-def show_header(language, text, response):
-    print(f'You chose "{language}" as the language to translate "{text}" to.')
-    print(f'{response.status_code} {"OK" if response.ok else "ERROR"}')
+def show_header():
+    print("Hello, you're welcome to the translator. Translator supports:")
+    for k, v in __languages.items():
+        print(f"{k}. {v}")
 
 
 def show_translations(translations, language):
@@ -24,9 +30,6 @@ def show_examples(examples, language):
         print(f"{examples[i + 1]}\n")
 
 
-def show_results(translations, examples, mode, text, response):
-    language = mode[1].capitalize()
-    show_header(language, text, response)
-    print("\nContent examples:")
-    show_translations(translations, language)
-    show_examples(examples, language)
+def show_results(translations, examples, mode):
+    show_translations(translations, mode[1])
+    show_examples(examples, mode[1])
