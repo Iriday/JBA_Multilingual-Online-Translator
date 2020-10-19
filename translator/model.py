@@ -16,5 +16,5 @@ def get_examples(content):
 
 
 def get_text(content, container_id, text_class):
-    tags = BeautifulSoup(content, "html.parser").find(attrs={"id": container_id}).findAll(attrs={"class": text_class})
+    tags = BeautifulSoup(content, "html.parser").select(f"#{container_id} .{text_class}")
     return [text for text in (tag.text.strip() for tag in tags) if text]
