@@ -11,13 +11,13 @@ def get_page(from_lang, to_lang, text) -> rq.Response:
 
 
 def get_translations(content):
-    return get_text(content, "translations-content", "translation")
+    return get_text(content, "#translations-content .translation")
 
 
 def get_examples(content):
-    return get_text(content, "examples-content", "ltr")
+    return get_text(content, "#examples-content .text")
 
 
-def get_text(content, container_id, text_class):
-    tags = BeautifulSoup(content, "html.parser").select(f"#{container_id} .{text_class}")
+def get_text(content, selector):
+    tags = BeautifulSoup(content, "html.parser").select(selector)
     return [text for text in (tag.text.strip() for tag in tags) if text]
