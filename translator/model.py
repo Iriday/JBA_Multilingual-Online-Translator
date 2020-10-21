@@ -1,8 +1,8 @@
 import requests as rq
 from bs4 import BeautifulSoup
 
-supported_languages = {1: "Arabic", 2: "German", 3: "English", 4: "Spanish", 5: "French", 6: "Hebrew", 7: "Japanese",
-                       8: "Dutch", 9: "Polish", 10: "Portuguese", 11: "Romanian", 12: "Russian", 13: "Turkish"}
+LANGUAGES = ("Arabic", "German", "English", "Spanish", "French", "Hebrew", "Japanese", "Dutch", "Polish", "Portuguese",
+             "Romanian", "Russian", "Turkish")
 
 
 def get_page(from_lang, to_lang, text) -> rq.Response:

@@ -1,5 +1,5 @@
-def run(view, model):
-    mode, text = view.get_mode(model.supported_languages), view.get_text()
+def run(view, model, args=None):
+    mode, text = args if args else (view.get_mode(model.LANGUAGES), view.get_text())
 
     for i, from_to_lang in enumerate(mode):
         response = model.get_page(from_to_lang[0], from_to_lang[1], text)

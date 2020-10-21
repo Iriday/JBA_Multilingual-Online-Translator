@@ -1,16 +1,15 @@
 from sys import stdout
-from itertools import product
+from translator.args_parser import to_all_languages
 
 
 def get_mode(languages):
     show_header(languages)
-    from_lang_index = int(input("Type the number of your language:\n"))
-    to_lang_index = int(input("Type the number of language you want to translate to, or '0' to translate to all languages:\n"))
-    if to_lang_index != 0:
+    from_lang_index = int(input("Type the number of your language:\n")) - 1
+    to_lang_index = int(
+        input("Type the number of language you want to translate to, or '0' to translate to all languages:\n")) - 1
+    if to_lang_index != -1:
         return [(languages[from_lang_index], languages[to_lang_index])]
-    modes = list(product([(languages[from_lang_index])], languages.values()))
-    modes.remove((languages[from_lang_index], languages[from_lang_index]))
-    return modes
+    return to_all_languages(languages[from_lang_index], languages)
 
 
 def get_text():
@@ -19,8 +18,8 @@ def get_text():
 
 def show_header(languages):
     print("Hello, you're welcome to the translator. Translator supports:")
-    for k, v in languages.items():
-        print(f"{k}. {v}")
+    for i, v in enumerate(languages):
+        print(f"{i + 1}. {v}")
 
 
 def show_translations(translations, to_lang, out=stdout):
