@@ -13,9 +13,24 @@ def parse_args(args, languages):
     to_lang = parsed_args.to_lang.capitalize()
     text = parsed_args.text
 
+    err_msg = __check_input(from_lang, to_lang, languages)
+    if err_msg:
+        print(err_msg)
+        exit()
+
     if to_lang != "All":
         return [(from_lang, to_lang)], text
     return __to_all_languages(from_lang, languages), text
+
+
+def __check_input(from_lang, to_lang, languages):
+    if from_lang not in languages:
+        return f"Sorry the program doesn't support {from_lang}"
+    if to_lang not in languages and to_lang != "All":
+        return f"Sorry the program doesn't support {to_lang}"
+    if from_lang == to_lang:
+        return f"Translation from {from_lang} to {to_lang} is not possible"
+    return None
 
 
 def __to_all_languages(from_lang, languages):
